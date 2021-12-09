@@ -1,0 +1,30 @@
+{
+    "name": "Monka",
+    "description": "Monka is emotes for vk",
+    "version": "0.1",
+    "author": "1samson1",
+    "manifest_version": 3,    
+    "background": {
+      "service_worker": "background.js"
+    },    
+    "action": {
+      "default_popup": "/popub/popup.html",
+      "default_icon": {
+        "16": "/assets/icon16x16.png",
+        "32": "/assets/icon32x32.png",
+        "48": "/assets/icon48x48.png",
+        "128": "/assets/icon128x128.png",
+        "256": "/assets/icon256x256.png",
+        "512": "/assets/icon512x512.png"
+      }
+    },
+    "permissions" : ["storage"],
+    "icons": {
+        "16": "/assets/icon16x16.png",
+        "32": "/assets/icon32x32.png",
+        "48": "/assets/icon48x48.png",
+        "128": "/assets/icon128x128.png",
+        "256": "/assets/icon256x256.png",
+        "512": "/assets/icon512x512.png"
+    }
+}
