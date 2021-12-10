@@ -1,0 +1,17 @@
+body {
+    width: 280px;
+    overflow-x: hidden;
+}
+
+header {
+    display: flex;    
+    justify-content: center;
+    gap: 10px;
+    align-items: center;
+}
+
+.copyright{
+    font-size: 0.9em;
+    color: #777;
+    text-align: right;
+}
