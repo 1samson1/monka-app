@@ -1,1 +1,1 @@
-# Monka is emotes for vk
+# Monka is cool emotes for vk

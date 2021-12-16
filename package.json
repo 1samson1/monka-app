@@ -1,0 +1,20 @@
+{
+  "name": "monka",
+  "version": "1.0.0",
+  "description": "Monka is cool emates for VK",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "monka",
+    "emotes",
+    "vk",
+    "emote"
+  ],
+  "author": "SAMSON",
+  "license": "ISC",
+  "devDependencies": {
+    "webpack": "^5.65.0"
+  }
+}
