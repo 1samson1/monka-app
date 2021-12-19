@@ -1,0 +1,123 @@
+@import 'matetial-icons.css';
+
+:root{
+    --bg: #18181b;
+    --bgSec: #1f1f23;
+
+    --toHover: #383b42;
+    --toActive: #ae8eff;
+
+    --scrollbar-size: .4rem;
+    --scrollbar-minlength: 1.5rem; /* Minimum length of scrollbar thumb (width of horizontal, height of vertical) */
+    --scrollbar-ff-width: thin; /* FF-only accepts auto, thin, none */
+    --scrollbar-track-color: transparent;
+    --scrollbar-color: #af8fff80;
+    --scrollbar-color-hover: #ae8eff;
+    --scrollbar-color-active: #ae8eff;
+}
+
+* {
+    font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+}
+
+body {
+    background: #eee;
+}
+
+#monka {
+    margin: 0 auto;
+    margin-top: 5%;
+    max-width: 400px;
+    height: 500px;
+    background: var(--bg);
+    color:#fff;
+    border-radius: 10px;
+    display: flex;
+    gap: 10px;
+    padding: 10px;
+}
+
+/* NAVIGATION */
+
+#monka .navigation {
+    display: flex;     
+    background: var(--bgSec);
+    flex-direction: column;
+    align-items: center;
+    border-radius: 10px;
+    gap: 5px;
+}
+
+#monka .navigation .to-section {
+    width: 24px;
+    height: 24px;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 7px;
+    color: #fff;    
+    border-radius: 10px;
+    box-sizing: content-box;    
+    transition: linear .3s;
+}
+
+#monka .navigation .to-section:hover {
+    background: var(--toHover);    
+}
+
+#monka .navigation .to-section.active {    
+    color: var(--toActive);
+}
+
+/* SECTIONS */
+
+#monka .sections {   
+    flex-grow: 1;
+    position: relative; 
+    overflow-y: auto;
+    padding-right: 5px;
+}
+
+/* SECTION */
+
+#monka .section {
+    padding: 10px;
+    height: 250px;
+    background: var(--bgSec);
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+#monka .section:first-child{
+    margin-top: 0;
+}
+
+/* This class controls what elements have the new fancy scrollbar CSS */
+.scroll{
+    scrollbar-color: var(--scrollbar-color) var(--scrollbar-track-color);
+}
+.scroll::-webkit-scrollbar {
+    height: var(--scrollbar-size);
+    width: var(--scrollbar-size);
+}
+.scroll::-webkit-scrollbar-track {
+    background-color: var(--scrollbar-track-color);
+}
+.scroll::-webkit-scrollbar-thumb {    
+    background-color: var(--scrollbar-color);
+    border-radius: 3px;
+}
+.scroll::-webkit-scrollbar-thumb:hover {
+    background-color: var(--scrollbar-color-hover);
+}
+.scroll::-webkit-scrollbar-thumb:active {
+    background-color: var(--scrollbar-color-active);
+}
+.scroll::-webkit-scrollbar-thumb:vertical {
+    min-height: var(--scrollbar-minlength);
+}
+.scroll::-webkit-scrollbar-thumb:horizontal {
+    min-width: var(--scrollbar-minlength);
+}
