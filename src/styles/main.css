@@ -5,7 +5,7 @@
     --bgSec: #1f1f23;
 
     --toHover: #383b42;
-    --toActive: #ae8eff;
+    --toActive: #9147ff;
 
     --scrollbar-size: .4rem;
     --scrollbar-minlength: 1.5rem; /* Minimum length of scrollbar thumb (width of horizontal, height of vertical) */
@@ -78,8 +78,8 @@ body {
     background: var(--toHover);    
 }
 
-#monka .navigation .to-section.active {    
-    color: var(--toActive);
+#monka .navigation .to-section.active {   
+    background: var(--toActive); 
 }
 
 /* VIEWS */

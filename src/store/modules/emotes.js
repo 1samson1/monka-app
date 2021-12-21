@@ -3,7 +3,7 @@ export default {
         onChangeActiveSection({commit}, {active}){
             if(!active) return;
             
-            commit('changeView', active)
+            commit('changeActiveSection', active)
         }
     },
     mutations:{
@@ -11,8 +11,8 @@ export default {
             state.activeSection = active
         }
     },
-    state:{
-        activeSection: 'emotes',
+    state:{        
+        activeSection: 'recently',
     },
     getters:{
         getActiveSection(state){

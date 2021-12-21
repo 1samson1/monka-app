@@ -1,5 +1,5 @@
 <template>
-    <Navigation @changeActive="onChangeActiveView" />
+    <Navigation />
     <component :is="views[getCurrentView]"></component>
 </template>
 
@@ -9,7 +9,7 @@ import Navigation from '@/components/Navigation.vue'
 import Emotes from '@/views/Emotes.vue'
 import Search from '@/views/Search.vue'
 import Settings from '@/views/Settings.vue'
-import {mapGetters, mapActions} from 'vuex'
+import {mapGetters} from 'vuex'
 
 export default {
     data(){
@@ -22,9 +22,7 @@ export default {
         }
     },
     methods:{
-        ...mapActions([
-            'onChangeActiveView'
-        ])
+        
     },
     computed:{
         ...mapGetters([
