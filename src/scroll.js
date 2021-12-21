@@ -3,8 +3,8 @@ let containerSections = document.querySelector('.sections'),
     toSections = document.querySelectorAll('.to-section'),
     currentActive = '';
 
-containerSections.addEventListener('scroll', onScroll.bind(containerSections));
-containerSections.addEventListener('changeActive', onChangeActive.bind(containerSections));
+//containerSections.addEventListener('scroll', onScroll.bind(containerSections));
+//containerSections.addEventListener('changeActive', onChangeActive.bind(containerSections));
 onScroll.call(containerSections);
 
 toSections.forEach( el => {

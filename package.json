@@ -45,7 +45,8 @@
   "dependencies": {
     "@babel/polyfill": "^7.12.1",
     "gsap": "^3.9.0",
-    "vue": "^3.2.26"
+    "vue": "^3.2.26",
+    "vuex": "^4.0.2"
   },
   "browserslist": "> 0.25%, not dead"
 }

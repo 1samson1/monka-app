@@ -112,7 +112,7 @@ export default  (env, args) => {
     return {
         mode: mode,
         entry: {
-            monka: ['./src/index.js']
+            monka: ['@babel/polyfill', './src/index.js']
         },
         output: {
             filename: `js/${filename('.js')}`,

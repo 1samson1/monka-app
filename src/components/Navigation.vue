@@ -1,29 +1,59 @@
 <template>
     <div class="navigation">
-        <a data-to-section="first" class="to-section">
-            <span class="material-icons">face</span>
-        </a>
-        <a data-to-section="second" class="to-section">
-            <span class="material-icons">search</span>
-        </a>
-        <a data-to-section="third" class="to-section">
-            <span class="material-icons">palette</span>
-        </a>
-        <a data-to-section="fourth" class="to-section">
-            <span class="material-icons">sort</span>
-        </a>
-        <a data-to-section="fifth" class="to-section">
-            <span class="material-icons">settings</span>
-        </a>
+        <div class="nav-section emotes" 
+            @click="onChangeActiveView('emotes')
+        ">
+            <NavButton icon="schedule" />
+            <NavButton icon="favorite" />
+        </div>
+        <div class="nav-section">
+            <NavButton  
+                v-for="item in buttons"
+
+                :key="item.icon"
+                :value="icon"
+                :icon="item.icon"
+                :active="getCurrentView === item.icon"
+
+                @click="onChangeActiveView(item.icon)"
+            />
+            
+        </div>
     </div>
 </template>
 
 <script>
-export default {
+import NavButton from './NavButton.vue'
+import {mapGetters, mapActions} from 'vuex'
 
+export default {
+    data(){
+        return {
+            buttons:[
+                {
+                    icon: 'search'
+                },
+                {
+                    icon: 'settings'
+                },
+            ]
+        }
+    },
+    methods: {
+        onClickButton(e, t){
+            console.log(e, t);
+        },
+        ...mapActions([
+            'onChangeActiveView'
+        ])
+    },
+    computed:{
+        ...mapGetters([
+            'getCurrentView'
+        ])
+    },
+    components: {
+        NavButton,
+    }
 }
 </script>
-
-<style>
-
-</style>

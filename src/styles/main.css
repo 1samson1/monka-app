@@ -40,13 +40,21 @@ body {
 
 /* NAVIGATION */
 
-#monka .navigation {
+#monka .navigation, 
+#monka .nav-section {
     display: flex;     
-    background: var(--bgSec);
     flex-direction: column;
     align-items: center;
-    border-radius: 10px;
     gap: 5px;
+}
+
+#monka .nav-section{
+    background: var(--bgSec);
+    border-radius: 10px;
+}
+
+#monka .nav-section.emotes{
+    flex-grow: 1;
 }
 
 #monka .navigation .to-section {
@@ -58,9 +66,12 @@ body {
     align-items: center;
     padding: 7px;
     color: #fff;    
+    border: 0;
+    background: transparent;
     border-radius: 10px;
     box-sizing: content-box;    
     transition: linear .3s;
+    cursor: pointer;
 }
 
 #monka .navigation .to-section:hover {
@@ -69,6 +80,16 @@ body {
 
 #monka .navigation .to-section.active {    
     color: var(--toActive);
+}
+
+/* VIEWS */
+
+#monka .view{
+    flex-grow: 1;
+    padding: 10px;
+    height: 100%;
+    background: var(--bgSec);
+    border-radius: 10px;    
 }
 
 /* SECTIONS */
