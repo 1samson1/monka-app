@@ -1,13 +1,6 @@
 <template>
     <div ref="sections" class="sections scroll" @scroll="onScroll">
         <div class="section" data-section="recently">Recently</div>
-        <div class="section" data-section="3">Recently</div>
-        <div class="section" data-section="3">Recently</div>
-        <div class="section" data-section="3">Recently</div>
-        <div class="section" data-section="3">Recently</div>
-        <div class="section" data-section="3">Recently</div>
-        <div class="section" data-section="3">Recently</div>
-        <div class="section" data-section="3">Recently</div>
         <div class="section" data-section="favorites">Favorites</div>
     </div>
 </template>

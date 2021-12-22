@@ -1,6 +1,8 @@
 <template>
     <Navigation @scrollSection="onScrollSection" />
-    <component ref="view" :is="views[getCurrentView]"></component>
+    <keep-alive>
+        <component ref="view" :is="getView"></component>
+    </keep-alive>
 </template>
 
 <script>
@@ -12,27 +14,21 @@ import Settings from '@/views/Settings.vue'
 import {mapGetters} from 'vuex'
 
 export default {
-    data(){
-        return {
-            views:{
-                emotes: Emotes,
-                settings: Settings,
-                search: Search,
-            }
-        }
-    },
     methods:{
         onScrollSection(active){
             this.$refs.view.scrollTo(active);
         }
     },
     computed:{
+        getView() {
+            return this.getCurrentView.toLowerCase()
+        },
         ...mapGetters([
             'getCurrentView'
         ])
     },
     
-    components: {Navigation, Emotes}
+    components: {Navigation, Emotes, Search, Settings}
 
 }
 </script>

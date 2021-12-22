@@ -9,6 +9,8 @@ import CopyWebpackPlugin from 'copy-webpack-plugin';
 import TerserPlugin from 'terser-webpack-plugin';
 import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
 import ESLintWebpackPlugin from 'eslint-webpack-plugin';
+import webpack from 'webpack';
+
 
 const mode = process.env.NODE_ENV
 const isDev = mode === 'development'
@@ -89,6 +91,17 @@ const plugins = () => {
 
     if(isDev){
         base.push(new ESLintWebpackPlugin())
+        base.push(new webpack.DefinePlugin({
+            __VUE_OPTIONS_API__: JSON.stringify(true),
+            __VUE_PROD_DEVTOOLS__: JSON.stringify(true),
+        }))
+    }
+
+    if(isProd){
+        base.push(new webpack.DefinePlugin({
+            __VUE_OPTIONS_API__: JSON.stringify(false),
+            __VUE_PROD_DEVTOOLS__: JSON.stringify(false),
+        }))
     }
 
     return base;

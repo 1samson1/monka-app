@@ -1,9 +1,9 @@
 export default {
     actions:{
-        onChangeActiveSection({commit}, {active}){
+        async onChangeActiveSection({commit}, {active}){
             if(!active) return;
             
-            commit('changeActiveSection', active)
+           return await commit('changeActiveSection', active)
         }
     },
     mutations:{

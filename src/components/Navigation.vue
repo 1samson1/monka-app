@@ -27,7 +27,6 @@
 </template>
 
 <script>
-import { eventBus } from '@/index.js'
 import NavButton from './NavButton.vue'
 import {mapGetters, mapActions} from 'vuex'
 
@@ -57,8 +56,8 @@ export default {
     methods: {
         onClickButtonSection(active){
             this.onChangeActiveView('emotes')
+                .then(() => this.$emit('scrollSection', active))
             this.onChangeActiveSection({active})
-            this.$emit('scrollSection', active)
         },
         ...mapActions([
             'onChangeActiveView',
