@@ -58,6 +58,7 @@ export default {
         onClickButtonSection(active){
             this.onChangeActiveView('emotes')
             this.onChangeActiveSection({active})
+            this.$emit('scrollSection', active)
         },
         ...mapActions([
             'onChangeActiveView',

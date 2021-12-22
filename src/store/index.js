@@ -5,7 +5,6 @@ import emotes from './modules/emotes.js'
 export default new Vuex.Store({
     actions:{
         onChangeActiveView({commit}, view){
-            console.log(view);
             commit('changeView', view)
         }
     },

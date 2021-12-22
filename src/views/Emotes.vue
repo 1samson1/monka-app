@@ -1,12 +1,20 @@
 <template>
-    <div class="sections scroll" @scroll="onScroll">
+    <div ref="sections" class="sections scroll" @scroll="onScroll">
         <div class="section" data-section="recently">Recently</div>
+        <div class="section" data-section="3">Recently</div>
+        <div class="section" data-section="3">Recently</div>
+        <div class="section" data-section="3">Recently</div>
+        <div class="section" data-section="3">Recently</div>
+        <div class="section" data-section="3">Recently</div>
+        <div class="section" data-section="3">Recently</div>
+        <div class="section" data-section="3">Recently</div>
         <div class="section" data-section="favorites">Favorites</div>
     </div>
 </template>
 
 <script>
-import {mapGetters, mapActions} from 'vuex'
+import {gsap} from 'gsap'
+import {mapGetters, mapActions, mapMutations} from 'vuex'
 
 export default {
     mounted(){
@@ -14,6 +22,8 @@ export default {
     },   
     methods:{
         onScroll(e){
+            if(this.getScrollOff) return; 
+
             let el = e.target, 
                 cur_pos = el.scrollTop,
                 sections = el.childNodes        
@@ -29,13 +39,28 @@ export default {
                 }
             })
         },
+        scrollTo(active){
+            let section = this.$refs.sections.querySelector(`[data-section="${active}"]`);
+
+            this.toggleScrollOff(true)
+
+            gsap.to( this.$refs.sections, {
+                duration: 0.5,
+                scrollTop: section.offsetTop,
+                onComplete: () => this.toggleScrollOff(false),
+            })
+        },
         ...mapActions([
             'onChangeActiveSection'
         ]),
+        ...mapMutations([
+            'toggleScrollOff'
+        ])
     },
     computed:{
         ...mapGetters([
-            'getActiveSection'
+            'getActiveSection',
+            'getScrollOff',
         ])
     }
 

@@ -1,6 +1,6 @@
 <template>
-    <Navigation />
-    <component :is="views[getCurrentView]"></component>
+    <Navigation @scrollSection="onScrollSection" />
+    <component ref="view" :is="views[getCurrentView]"></component>
 </template>
 
 <script>
@@ -22,7 +22,9 @@ export default {
         }
     },
     methods:{
-        
+        onScrollSection(active){
+            this.$refs.view.scrollTo(active);
+        }
     },
     computed:{
         ...mapGetters([
