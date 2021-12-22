@@ -1,4 +1,5 @@
 @import 'matetial-icons.css';
+@import 'animate.css';
 
 :root{
     --bg: #18181b;
@@ -83,20 +84,30 @@ body {
 }
 
 /* VIEWS */
+#monka .containerView{
+    overflow: hidden;
+    position: relative;
+    flex-grow: 1;
+    height: 100%;
+}
 
 #monka .view{
-    flex-grow: 1;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+}
+
+#monka .view:not(.sections){
     padding: 10px;
-    height: 100%;
     background: var(--bgSec);
-    border-radius: 10px;    
+    border-radius: 10px;
 }
 
 /* SECTIONS */
 
 #monka .sections {   
-    flex-grow: 1;
-    position: relative; 
     overflow-y: auto;
     padding-right: 5px;
 }

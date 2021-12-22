@@ -1,5 +1,5 @@
 <template>
-<div class="view" data-section="first">
+<div>
     Search
 </div>
 </template>
