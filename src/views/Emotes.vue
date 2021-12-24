@@ -1,21 +1,27 @@
 <template>
     <div ref="sections" class="sections scroll" @scroll="onScroll">
-        <div class="section" data-section="recently">Recently</div>
-        <div class="section" data-section="favorites">Favorites</div>
+        <EmoteSection  
+            v-for="section in getEmoteSections"
+            :key="section.title"
+            :section="section"
+        />
     </div>
 </template>
 
 <script>
 import {gsap} from 'gsap'
+import EmoteSection from '@/components/Emotes/EmoteSection.vue'
 import {mapGetters, mapActions, mapMutations} from 'vuex'
 
 export default {
-    mounted(){
-
-    },   
+    data(){
+        return {
+            scrollOff: false,
+        }
+    },
     methods:{
         onScroll(e){
-            if(this.getScrollOff) return; 
+            if(this.scrollOff) return; 
 
             let el = e.target, 
                 cur_pos = el.scrollTop,
@@ -35,27 +41,26 @@ export default {
         scrollTo(active){
             let section = this.$refs.sections.querySelector(`[data-section="${active}"]`);
 
-            this.toggleScrollOff(true)
+            this.scrollOff = true
 
             gsap.to( this.$refs.sections, {
                 duration: 0.5,
                 scrollTop: section.offsetTop,
-                onComplete: () => this.toggleScrollOff(false),
+                onComplete: () => {this.scrollOff = false},
             })
         },
         ...mapActions([
             'onChangeActiveSection'
-        ]),
-        ...mapMutations([
-            'toggleScrollOff'
-        ])
+        ]),        
     },
     computed:{
         ...mapGetters([
             'getActiveSection',
-            'getScrollOff',
+            'getEmoteSections',
         ])
+    },
+    components:{
+        EmoteSection
     }
-
 }
 </script>

@@ -2,13 +2,15 @@
     <div class="navigation">
         <div class="nav-section emotes" >
             <NavButton  
-                v-for="item in sections"
+                v-for="item in getEmoteSections"
 
                 :key="item.icon"                
                 :icon="item.icon"
-                :active="getActiveSection === item.value && isEmoteSection"
+                :brand="item.brand"
+                :avatar="item.avatar"
+                :active="getActiveSection === item.title && isEmoteSection"
 
-                @click="onClickButtonSection(item.value)"
+                @click="onClickButtonSection(item.title)"
             />
         </div>
         <div class="nav-section">
@@ -33,16 +35,6 @@ import {mapGetters, mapActions} from 'vuex'
 export default {
     data(){
         return {
-            sections: [
-                {
-                    icon: 'schedule',
-                    value: 'recently'
-                },
-                {
-                    icon: 'favorite',
-                    value: 'favorites'
-                },
-            ],
             buttons:[
                 {
                     icon: 'search'
@@ -69,6 +61,7 @@ export default {
             return this.getCurrentView === 'emotes'
         },
         ...mapGetters([
+            'getEmoteSections',
             'getCurrentView',
             'getActiveSection',
         ])
