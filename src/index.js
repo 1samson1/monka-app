@@ -6,7 +6,9 @@ import './styles/main.css'
 
 store.dispatch('fetchGlobalEmotes')
 
-console.log(store);
+console.log(store)
+
+console.log(PRODUCTION);
 
 
 const AppInstance = createApp(App)

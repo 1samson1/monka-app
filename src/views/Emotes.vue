@@ -1,23 +1,37 @@
 <template>
-    <div ref="sections" class="sections scroll" @scroll="onScroll">
-        <EmoteSection  
-            v-for="section in getEmoteSections"
-            :key="section.title"
-            :section="section"
-        />
-    </div>
+  <div
+    ref="sections"
+    class="sections scroll"
+    @scroll="onScroll"
+  >
+    <EmoteSection  
+      v-for="section in getEmoteSections"
+      :key="section.title"
+      :section="section"
+    />
+  </div>
 </template>
 
 <script>
 import {gsap} from 'gsap'
 import EmoteSection from '@/components/Emotes/EmoteSection.vue'
-import {mapGetters, mapActions, mapMutations} from 'vuex'
+import {mapGetters, mapActions} from 'vuex'
 
 export default {
+    name: "EmotesView",
+    components:{
+        EmoteSection
+    },
     data(){
         return {
             scrollOff: false,
         }
+    },    
+    computed:{
+        ...mapGetters([
+            'getActiveSection',
+            'getEmoteSections',
+        ])
     },
     methods:{
         onScroll(e){
@@ -44,23 +58,15 @@ export default {
             this.scrollOff = true
 
             gsap.to( this.$refs.sections, {
-                duration: 0.5,
+                duration: 0.8,
                 scrollTop: section.offsetTop,
+                ease: "power2.out",
                 onComplete: () => {this.scrollOff = false},
             })
         },
         ...mapActions([
             'onChangeActiveSection'
         ]),        
-    },
-    computed:{
-        ...mapGetters([
-            'getActiveSection',
-            'getEmoteSections',
-        ])
-    },
-    components:{
-        EmoteSection
-    }
+    }    
 }
 </script>

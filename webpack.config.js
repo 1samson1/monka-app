@@ -86,21 +86,17 @@ const plugins = () => {
         new VueLoaderPlugin(),
         new MiniCssExtractPlugin({
             filename: `css/${filename('.css')}`
+        }),
+        new webpack.DefinePlugin({
+            PRODUCTION: JSON.stringify(isDev),
+            __VUE_OPTIONS_API__: JSON.stringify(isDev),
+            __VUE_PROD_DEVTOOLS__: JSON.stringify(isDev),
         })
     ]
 
     if(isDev){
-        base.push(new ESLintWebpackPlugin())
-        base.push(new webpack.DefinePlugin({
-            __VUE_OPTIONS_API__: JSON.stringify(true),
-            __VUE_PROD_DEVTOOLS__: JSON.stringify(true),
-        }))
-    }
-
-    if(isProd){
-        base.push(new webpack.DefinePlugin({
-            __VUE_OPTIONS_API__: JSON.stringify(false),
-            __VUE_PROD_DEVTOOLS__: JSON.stringify(false),
+        base.push(new ESLintWebpackPlugin({
+            extensions:['.js', '.vue']
         }))
     }
 

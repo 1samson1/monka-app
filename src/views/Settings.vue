@@ -1,11 +1,11 @@
 <template>
-<div>
+  <div>
     Settings
-</div>
+  </div>
 </template>
 
 <script>
 export default {
-
+    name: "SettingsView"
 }
 </script>

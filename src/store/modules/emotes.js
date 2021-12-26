@@ -5,7 +5,7 @@ export default {
             
            return await commit('changeActiveSection', active)
         },
-        async fetchGlobalEmotes({commit}){
+        async fetchGlobalEmotes({commit, getters}){
             fetch('https://api.betterttv.net/3/cached/emotes/global')
                 .then(r => r.json())
                 .then(j => commit('setGlobalEmotes', j))
@@ -13,6 +13,10 @@ export default {
             fetch('https://api.betterttv.net/3/cached/frankerfacez/emotes/global')
                 .then(r => r.json())
                 .then(j => commit('setGlobalFrankerFacezEmotes', j))
+
+            fetch(getters.getHostApi + '/emotes/twitch/global')
+                .then(r => r.json())
+                .then(j => commit('setGlobalTwitchEmotes', j.data))
         }
 
     },
@@ -24,7 +28,27 @@ export default {
                 emotes
             }
         },
+        setGlobalTwitchEmotes(state, emotes){
+            let _emotes = Array.from(emotes).map( item => {
+                return item = {
+                    id: item.id,
+                    code: item.name,
+                    images: {
+                        "1x": item.images.url_1x,
+                        "2x": item.images.url_2x,
+                        "4x": item.images.url_4x,
+                    }
+                }
+            })
+
+            state.emotes.globalTwitch = {
+                title: "Twitch Global",
+                brand: "twitch_light",
+                emotes: _emotes
+            }
+        },
         setGlobalFrankerFacezEmotes(state, emotes){
+            console.log(emotes);
             state.emotes.globalFrankerFacez =  {
                 title: "FrankerFacez Global",
                 brand: 'frankerfacez',
@@ -56,6 +80,6 @@ export default {
         },
         getEmoteSections(state){
             return state.emotes
-        }
+        },
     },
 }

@@ -1,15 +1,19 @@
 <template>
-    <Navigation @scrollSection="onScrollSection" />
-    <div class="containerView">
-        <keep-alive>
-            <transition
-                enter-active-class="animate__animated animate__fadeInLeft"
-                leave-active-class="animate__animated animate__fadeOutRight"
-            >
-                <component class="view" ref="view" :is="getView"></component>
-            </transition> 
-        </keep-alive>
-    </div>
+  <Navigation @scrollSection="onScrollSection" />
+  <div class="containerView">
+    <keep-alive>
+      <transition
+        enter-active-class="animate__animated animate__fadeInLeft"
+        leave-active-class="animate__animated animate__fadeOutRight"
+      >
+        <component
+          :is="getView"
+          ref="view"
+          class="view"
+        />
+      </transition> 
+    </keep-alive>
+  </div>
 </template>
 
 <script>

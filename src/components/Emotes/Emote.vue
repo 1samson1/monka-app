@@ -1,11 +1,18 @@
 <template>
-    <div class="emote">
-        <img :src="image" :alt="emote.code">
-    </div>
+  <div class="emote">
+    <img
+      :src="image"
+      :alt="emote.code"
+    >
+  </div>
 </template>
 
 <script>
 export default {    
+    name: "EmoteItem",
+    props:{
+        emote: Object,
+    },
     computed:{
         image(){
             if(this.emote.images)
@@ -13,9 +20,6 @@ export default {
 
             return `https://cdn.betterttv.net/emote/${this.emote.id}/1x`
         }
-    },
-    props:{
-        emote: Object,
     }
 }
 </script>
