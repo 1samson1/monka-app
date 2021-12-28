@@ -15,4 +15,4 @@ const AppInstance = createApp(App)
 
 AppInstance.use(store)
 
-AppInstance.mount("#monka")
+AppInstance.mount(".monka")

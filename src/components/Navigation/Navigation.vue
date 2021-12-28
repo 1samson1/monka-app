@@ -36,7 +36,7 @@ export default {
     components: {
         NavButton,
     },
-    emits:['scrollSection'],
+    emits:['scroll-section'],
     data(){
         return {
             buttons:[
@@ -62,7 +62,7 @@ export default {
     methods: {
         onClickButtonSection(active){
             this.onChangeActiveView('emotes')
-                .then(() => this.$emit('scrollSection', active))
+                .then(() => this.$emit('scroll-section', active))
             this.onChangeActiveSection({active})
         },
         ...mapActions([

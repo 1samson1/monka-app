@@ -8,7 +8,7 @@ export default {
         async fetchGlobalEmotes({commit, getters}){
             fetch('https://api.betterttv.net/3/cached/emotes/global')
                 .then(r => r.json())
-                .then(j => commit('setGlobalEmotes', j))
+                .then(j => commit('setGlobalBetterTTVEmotes', j))
 
             fetch('https://api.betterttv.net/3/cached/frankerfacez/emotes/global')
                 .then(r => r.json())
@@ -17,19 +17,41 @@ export default {
             fetch(getters.getHostApi + '/emotes/twitch/global')
                 .then(r => r.json())
                 .then(j => commit('setGlobalTwitchEmotes', j.data))
+        },
+        async searchEmotes({commit}, search){
+            if(search.trim() === '') return
+
+            return await commit('searchEmotes', search)
         }
 
     },
     mutations:{
-        setGlobalEmotes(state, emotes){
-            state.emotes.global = {
+        setGlobalBetterTTVEmotes(state, emotes){
+            emotes = Array.from(emotes).map( item => {
+                item.images = {
+                    "1x": `https://cdn.betterttv.net/emote/${item.id}/1x`,
+                    "2x": `https://cdn.betterttv.net/emote/${item.id}/2x`,
+                    "3x": `https://cdn.betterttv.net/emote/${item.id}/3x`,
+                }
+                
+                return item 
+            })
+            
+            state.emotes.push({
                 title: "BetterTTV Global",
                 brand: "betterttv",
                 emotes
-            }
+            })
+        },
+        setGlobalFrankerFacezEmotes(state, emotes){
+            state.emotes.push({
+                title: "FrankerFacez Global",
+                brand: 'frankerfacez',
+                emotes
+            })
         },
         setGlobalTwitchEmotes(state, emotes){
-            let _emotes = Array.from(emotes).map( item => {
+            emotes = Array.from(emotes).map( item => {
                 return item = {
                     id: item.id,
                     code: item.name,
@@ -41,37 +63,36 @@ export default {
                 }
             })
 
-            state.emotes.globalTwitch = {
+            state.emotes.push({
                 title: "Twitch Global",
                 brand: "twitch_light",
-                emotes: _emotes
-            }
-        },
-        setGlobalFrankerFacezEmotes(state, emotes){
-            console.log(emotes);
-            state.emotes.globalFrankerFacez =  {
-                title: "FrankerFacez Global",
-                brand: 'frankerfacez',
-                emotes
-            }
-        },        
+                emotes: emotes
+            })
+        },     
         changeActiveSection(state, active){
             state.activeSection = active
+        },
+        searchEmotes(state, search){
+            let emotes = []
+
+            Array.from(state.emotes).forEach( section => {
+                Array.from(section.emotes).forEach( emote => {
+                    if(emote.code.indexOf(search) > -1) emotes.push(emote)
+                })
+            })
+
+            state.searchEmotes = emotes
         }
     },
     state:{    
-        emotes: {
-            recently:{
+        searchEmotes: [],
+        emotes: [
+            {
                 icon: 'schedule',
                 title: 'recently',
                 emotes: [],
             },
-            favorites:{
-                icon: 'favorite',
-                title: 'favorites',
-                emotes: [],
-            },
-        },
+        ],
         activeSection: 'recently',
     },
     getters:{
@@ -81,5 +102,8 @@ export default {
         getEmoteSections(state){
             return state.emotes
         },
+        getSearchEmotes(state){
+            return state.searchEmotes
+        }
     },
 }

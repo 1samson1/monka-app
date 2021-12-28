@@ -26,7 +26,7 @@ body {
     background: #eee;
 }
 
-#monka {
+.monka {
     margin: 0 auto;
     margin-top: 5%;
     max-width: 400px;
@@ -41,13 +41,13 @@ body {
 
 /* CHANNEL */
 
-#monka .channel_image {
+.monka .channel_image {
     display: block;
     width: 20px;
     width: 20px;
 }
 
-#monka .channel_image.brand {
+.monka .channel_image.brand {
     position: absolute;
     right: -3px;
     bottom: -3px;
@@ -57,24 +57,24 @@ body {
 
 /* NAVIGATION */
 
-#monka .navigation, 
-#monka .nav-section {
+.monka .navigation, 
+.monka .nav-section {
     display: flex;     
     flex-direction: column;
     align-items: center;
     gap: 5px;
 }
 
-#monka .nav-section{
+.monka .nav-section{
     background: var(--bgSec);
     border-radius: 10px;
 }
 
-#monka .nav-section.emotes{
+.monka .nav-section.emotes{
     flex-grow: 1;
 }
 
-#monka .navigation .to-section {
+.monka .navigation .to-section {
     position: relative;
     width: 24px;
     height: 24px;
@@ -93,33 +93,33 @@ body {
     cursor: pointer;
 }
 
-#monka .navigation .to-section .channel_image{
+.monka .navigation .to-section .channel_image{
     width: 24px;
     max-height: 24px;
 }
 
-#monka .navigation .to-section .channel_image.brand{
+.monka .navigation .to-section .channel_image.brand{
     width: 12px;
     max-height: 12px;
 }
 
-#monka .navigation .to-section:hover {
+.monka .navigation .to-section:hover {
     background: var(--toHover);    
 }
 
-#monka .navigation .to-section.active {   
+.monka .navigation .to-section.active {   
     background: var(--toActive); 
 }
 
 /* VIEWS */
-#monka .containerView{
+.monka .containerView{
     overflow: hidden;
     position: relative;
     flex-grow: 1;
     height: 100%;
 }
 
-#monka .view{
+.monka .view{
     position: absolute;
     top: 0;
     right: 0;
@@ -127,7 +127,7 @@ body {
     bottom: 0;
 }
 
-#monka .view:not(.sections){
+.monka .view:not(.container-emotes){
     padding: 10px;
     background: var(--bgSec);
     border-radius: 10px;
@@ -135,25 +135,26 @@ body {
 
 /* SECTIONS */
 
-#monka .sections {   
-    overflow-y: auto;
+.monka .sections {
+    position: relative;
+    margin-top: 10px;
     padding-right: 5px;
 }
 
 /* SECTION */
 
-#monka .section {
+.monka .section {
     padding: 10px;    
     background: var(--bgSec);
     border-radius: 10px;
     margin-top: 10px;
 }
 
-#monka .section:first-child{
+.monka .section:first-child{
     margin-top: 0;
 }
 
-#monka .section__header{
+.monka .section__header{
     display: flex;
     align-items: center;
     font-size: 14px;
@@ -161,52 +162,153 @@ body {
     padding-bottom: 7px;
 }
 
-#monka .section__channel{
+.monka .section__channel{
     position: relative;
 }
 
-#monka .section__content{
+.monka .section__content{
     display: flex;
     align-items: center;
     flex-wrap: wrap;
 }
 
 /* EMOTES */
+.container-emotes{
+    display: flex;
+    flex-direction: column;
+}
 
-#monka .emote{
+.monka .emote{
     border-radius: 5px;
     transition: all .3s ease;
     padding: 4px;
 }
 
-#monka .emote:hover{
+.monka .emote:hover{
     background: var(--toHover);
 }
 
+/* SEARCH */
+
+.monka .search{
+    margin-top: 10px;
+}
+
+/* INPUTS */
+
+.monka .form-group {
+    position: relative;
+}
+
+.monka .form-group .icon{
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.monka .form-group .delete{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    width: 24px;
+    height: 24px;
+    right: 10px;
+    border: 0;
+    cursor: pointer;
+    color: #aaaaaa;
+    background: transparent;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 0;
+    transition: all 0.3s ease;
+}
+
+.monka .form-group .delete:hover{
+    background: var(--toHover);
+}
+
+.monka .form-group .form-control{
+    background: var(--bgSec);
+    border-width: 1px;
+    border-style: solid;
+    border-color: var(--bgSec);
+    height: 38px;
+    font-size: 1rem;
+    outline: none;
+    color: #fff;
+    padding: 6px 10px;
+    padding-right: 39px;
+    border-radius: 10px;
+    transition: all 0.4s ease;
+}
+
+.monka .form-group .form-control:hover {
+    border-color: var(--toHover);
+}
+
+.monka .form-group .form-control:focus {
+    border-color: var(--toActive);
+}
+
+.monka .form-group .form-control.icon-item {
+    padding-left: 39px;
+}
+
+.monka .form-group .form-control.large {
+    width: 100%;
+}
+
+/* PLACEHOLDER */
+
+.monka .form-group .form-control::placeholder {color: #aaaaaa;}
+
+/* WebKit, Edge ----------------------------  */
+.monka .form-group .form-control::-webkit-input-placeholder {color: #aaaaaa;}
+
+/* Edge ----------------------------  */
+.monka .form-group .form-control::-ms-input-placeholder {color: #aaaaaa;}
+
+/* Firefox 4-18 ----------------------------  */
+.monka .form-group .form-control:-moz-placeholder {color: #aaaaaa;opacity: 1;}
+
+/* Firefox 19+ ----------------------------  */
+.monka .form-group .form-control::-moz-placeholder {color: #aaaaaa;opacity: 1;}
+
+/* IE 10-11 ----------------------------  */
+.monka .form-group .form-control:-ms-input-placeholder {color: #aaaaaa;}
+
+/* SCROLL */
+
 /* This class controls what elements have the new fancy scrollbar CSS */
-.scroll{
+.monka .scroll{
+    overflow-y: auto;
     scrollbar-color: var(--scrollbar-color) var(--scrollbar-track-color);
 }
-.scroll::-webkit-scrollbar {
+.monka .scroll::-webkit-scrollbar {
     height: var(--scrollbar-size);
     width: var(--scrollbar-size);
 }
-.scroll::-webkit-scrollbar-track {
+.monka .scroll::-webkit-scrollbar-track {
     background-color: var(--scrollbar-track-color);
 }
-.scroll::-webkit-scrollbar-thumb {    
+.monka .scroll::-webkit-scrollbar-thumb {    
     background-color: var(--scrollbar-color);
     border-radius: 3px;
 }
-.scroll::-webkit-scrollbar-thumb:hover {
+.monka .scroll::-webkit-scrollbar-thumb:hover {
     background-color: var(--scrollbar-color-hover);
 }
-.scroll::-webkit-scrollbar-thumb:active {
+.monka .scroll::-webkit-scrollbar-thumb:active {
     background-color: var(--scrollbar-color-active);
 }
-.scroll::-webkit-scrollbar-thumb:vertical {
+.monka .scroll::-webkit-scrollbar-thumb:vertical {
     min-height: var(--scrollbar-minlength);
 }
-.scroll::-webkit-scrollbar-thumb:horizontal {
+.monka .scroll::-webkit-scrollbar-thumb:horizontal {
     min-width: var(--scrollbar-minlength);
 }

@@ -95,9 +95,7 @@ const plugins = () => {
     ]
 
     if(isDev){
-        base.push(new ESLintWebpackPlugin({
-            extensions:['.js', '.vue']
-        }))
+        base.push(new ESLintWebpackPlugin())
     }
 
     return base;
