@@ -1,16 +1,19 @@
 <template>
-    <div class="container-emotes">
-        <SearchInput v-model:value="search" :large="true" placeholder="Search" icon="search" />
-        <div ref="sections" v-if="!searching" class="sections scroll" @scroll="onScroll">
+    <div class="bg-none">
+        <SearchInput v-model:value="search" :large="true" placeholder="Search" />
+        <div ref="sections" v-show="!searching" class="sections scroll" @scroll="onScroll">
             <EmoteSection
                 v-for="section in getEmoteSections"
                 :key="section.title"
                 :section="section"
             />
         </div>
-        <div v-else class="search scroll">
-             <SearchEmoteSection
-                :emotes="getSearchEmotes"/>
+        <div v-show="searching" class="search scroll">
+            <SearchEmoteSection
+                v-if="getSearchEmotes.length > 0"
+                :emotes="getSearchEmotes"
+            />
+            <SearchEmpty v-else />
         </div>
     </div>
 </template>
@@ -18,6 +21,7 @@
 <script>
 import SearchInput from '@/components/Search/SearchInput.vue'
 import SearchEmoteSection from '@/components/Search/SearchEmoteSection.vue'
+import SearchEmpty from '@/components/Search/SearchEmpty.vue'
 import EmoteSection from "@/components/Emotes/EmoteSection.vue"
 import { mapGetters, mapActions } from "vuex"
 import { gsap } from "gsap"
@@ -25,7 +29,7 @@ import { gsap } from "gsap"
 export default {
     name: "EmotesView",
     components: {
-        EmoteSection, SearchInput, SearchEmoteSection
+        EmoteSection, SearchInput, SearchEmoteSection, SearchEmpty
     },
     data() {
         return {
@@ -36,15 +40,9 @@ export default {
     },
     watch:{
         search(newVal){
-
-            if(newVal.trim() === ''){
-                this.searching = false 
-                return this.onChangeActiveSection({ active: 'recently'})
-            } 
+            if(newVal.trim() === '') return this.searching = false 
 
             this.searchEmotes(newVal)
-
-            this.onChangeActiveSection({ active: "search"});
 
             this.searching = true
         }

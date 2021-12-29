@@ -1,10 +1,10 @@
 <template>
     <div class="form-group">
         <div class="icon">
-            <div class="material-icons">{{ icon }}</div>
+            <div class="material-icons">search</div>
         </div>
         <input 
-            class="form-control" 
+            class="form-control icon-item" 
             type="text"
 
             :placeholder="placeholder"
@@ -27,18 +27,13 @@ export default {
         large: {
             type: Boolean,
             default: false
-        },
-        icon:{
-            type: String,
-            default: ''
-        },
+        },        
         placeholder: String,
         value: String
     },
     computed:{
         classList(){
             return {
-                "icon-item": this.icon,
                 large: this.large
             }
         }

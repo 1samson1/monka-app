@@ -21,7 +21,7 @@ export default {
         async searchEmotes({commit}, search){
             if(search.trim() === '') return
 
-            return await commit('searchEmotes', search)
+            return await commit('setSearchEmotes', search)
         }
 
     },
@@ -72,7 +72,7 @@ export default {
         changeActiveSection(state, active){
             state.activeSection = active
         },
-        searchEmotes(state, search){
+        setSearchEmotes(state, search){
             let emotes = []
 
             Array.from(state.emotes).forEach( section => {

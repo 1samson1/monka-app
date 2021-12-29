@@ -5,6 +5,8 @@
     --bg: #18181b;
     --bgSec: #1f1f23;
 
+    --linkHover: #ae8eff;
+
     --toHover: #383b42;
     --toActive: #9147ff;
 
@@ -125,9 +127,11 @@ body {
     right: 0;
     left: 0;
     bottom: 0;
+    display: flex;
+    flex-direction: column;
 }
 
-.monka .view:not(.container-emotes){
+.monka .view:not(.bg-none){
     padding: 10px;
     background: var(--bgSec);
     border-radius: 10px;
@@ -150,8 +154,15 @@ body {
     margin-top: 10px;
 }
 
-.monka .section:first-child{
+.monka .section:first-child {
     margin-top: 0;
+}
+
+.monka .section.empty {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .monka .section__header{
@@ -173,11 +184,6 @@ body {
 }
 
 /* EMOTES */
-.container-emotes{
-    display: flex;
-    flex-direction: column;
-}
-
 .monka .emote{
     border-radius: 5px;
     transition: all .3s ease;
@@ -188,10 +194,42 @@ body {
     background: var(--toHover);
 }
 
+/* PACKS */
+
+.monka .pack__header{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.monka .pack__avatar{
+    width: 30px;
+    height: 30px;
+}
+
+.monka .pack__name{
+    color: #fff;
+    text-decoration: none;
+    transition: all 0.4s ease;
+}
+
+.monka .pack__name:hover{
+    color: var(--linkHover);
+}
+
+.monka .pack__content {
+    margin-top: 10px;
+    font-size: 0.8rem;
+    color: #cccccc;
+}
+
 /* SEARCH */
 
 .monka .search{
+    height: 100%;
     margin-top: 10px;
+    display: flex;
+    flex-direction: column;
 }
 
 /* INPUTS */

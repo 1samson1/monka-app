@@ -1,5 +1,6 @@
 import Vuex from 'vuex'
 import emotes from './modules/emotes.js'
+import packs from './modules/packs.js'
 
 export default new Vuex.Store({
     actions:{
@@ -25,6 +26,6 @@ export default new Vuex.Store({
         }
     },
     modules:{
-        emotes
+        emotes, packs
     }
 })

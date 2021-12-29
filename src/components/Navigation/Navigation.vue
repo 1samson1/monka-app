@@ -19,9 +19,9 @@
 
         :key="item.icon"                
         :icon="item.icon"
-        :active="getCurrentView === item.icon"
+        :active="getCurrentView === item.view"
 
-        @click="onChangeActiveView(item.icon)"
+        @click="onChangeActiveView(item.view)"
       />
     </div>
   </div>
@@ -41,10 +41,12 @@ export default {
         return {
             buttons:[
                 {
-                    icon: 'search'
+                    icon: 'auto_awesome_motion',
+                    view: 'packs'
                 },
                 {
-                    icon: 'settings'
+                    icon: 'settings',
+                    view: 'settings'
                 },
             ]
         }

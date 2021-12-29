@@ -1,14 +1,14 @@
 <template>
     <Navigation @scroll-section="onScrollSection" />
     <div class="containerView">
-        <keep-alive>
-            <transition
-                enter-active-class="animate__animated animate__fadeInLeft"
-                leave-active-class="animate__animated animate__fadeOutRight"
-            >
+        <transition
+            enter-active-class="animate__animated animate__fadeInLeft"
+            leave-active-class="animate__animated animate__fadeOutRight"
+        >
+            <keep-alive>
                 <component :is="getView" ref="view" class="view" />
-            </transition>
-        </keep-alive>
+            </keep-alive>
+        </transition>
     </div>
 </template>
 
@@ -16,12 +16,12 @@
 import Navigation from "@/components/Navigation/Navigation.vue"
 
 import Emotes from "@/views/Emotes.vue"
-import Search from "@/views/Search.vue"
+import Packs from "@/views/Packs.vue"
 import Settings from "@/views/Settings.vue"
 import { mapGetters } from "vuex"
 
-export default {
-    components: { Navigation, Emotes, Search, Settings },
+export default {    
+    components: { Navigation, Emotes, Packs, Settings },
     computed: {
         getView() {
             return this.getCurrentView.toLowerCase()
