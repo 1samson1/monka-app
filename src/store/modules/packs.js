@@ -5,7 +5,7 @@ export default {
                 .then(res => res.json())
                 .then(j => commit('setSearchPacks', j.data))
         },
-        onAddPack({commit}, pack){
+        onAddPack({commit, dispatch}, pack){
             pack = {
                 id: pack.id,
                 display_name: pack.display_name,
@@ -14,10 +14,13 @@ export default {
                 url: pack.url
             }
 
-            commit('addPack', pack)
+            dispatch('fetchChannelEmotes', pack)
+                .then(() => commit('addPack', pack))
+                .catch(() => console.error("Channel is not found"))
         },
-        onRemovePack({commit}, pack){
-            commit('removePack', pack)
+        onRemovePack({commit, dispatch}, pack){
+            dispatch('onRemoveEmotes', pack)
+                .then(() => commit('removePack', pack))
         }
     },
     mutations: {

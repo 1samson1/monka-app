@@ -8,9 +8,9 @@
         :icon="item.icon"
         :brand="item.brand"
         :avatar="item.avatar"
-        :active="getActiveSection === item.title && isEmoteSection"
+        :active="getActiveSection === item.id && isEmoteSection"
 
-        @click="onClickButtonSection(item.title)"
+        @click="onClickButtonSection(item.id)"
       />
     </div>
     <div class="nav-section">

@@ -4,12 +4,10 @@ import store from '@/store'
 
 import './styles/main.css'
 
-store.dispatch('fetchGlobalEmotes')
+store.dispatch('fetchEmotes')
+    .then(() => console.log('All emotes loaded'))
 
 console.log(store)
-
-console.log(PRODUCTION);
-
 
 const AppInstance = createApp(App)
 

@@ -1,5 +1,5 @@
 <template>
-    <div class="section" :data-section="section.title">
+    <div class="section" :data-section="section.id">
         <div class="section__header">
             <div class="section__brand">
                 <div v-if="section.avatar" class="section__channel">
