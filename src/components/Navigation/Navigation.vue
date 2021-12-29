@@ -21,7 +21,7 @@
         :icon="item.icon"
         :active="getCurrentView === item.view"
 
-        @click="onChangeActiveView(item.view)"
+        @click="onChangeView(item.view)"
       />
     </div>
   </div>
@@ -36,7 +36,7 @@ export default {
     components: {
         NavButton,
     },
-    emits:['scroll-section'],
+    emits:['scroll-section', 'change-view'],
     data(){
         return {
             buttons:[
@@ -63,9 +63,13 @@ export default {
     },
     methods: {
         onClickButtonSection(active){
-            this.onChangeActiveView('emotes')
+            this.onChangeView('emotes')
                 .then(() => this.$emit('scroll-section', active))
             this.onChangeActiveSection({active})
+        },
+        async onChangeView(active){
+            await this.onChangeActiveView(active)
+            await this.$emit('change-view', active)
         },
         ...mapActions([
             'onChangeActiveView',

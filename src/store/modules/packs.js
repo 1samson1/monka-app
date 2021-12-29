@@ -1,15 +1,27 @@
 export default {
     actions: {
-        searchPacks({commit, getters}, search){
-            fetch(getters.getHostApi + '/channels/search/?query=' + search)
+        async searchPacks({commit, getters}, search){
+            return fetch(getters.getHostApi + '/channels/search/?query=' + search)
                 .then(res => res.json())
                 .then(j => commit('setSearchPacks', j.data))
+        },
+        onAddPack({commit}, pack){
+            pack = {
+                id: pack.id,
+                display_name: pack.display_name,
+                name: pack.name,
+                avatar: pack.avatar,
+                url: pack.url
+            }
+
+            commit('addPack', pack)
+        },
+        onRemovePack({commit}, pack){
+            commit('removePack', pack)
         }
     },
     mutations: {
         setSearchPacks(state, packs){
-            console.log(packs);
-
             packs = Array.from(packs).map( pack => {
                 return {
                     id: pack.id,
@@ -22,6 +34,14 @@ export default {
             })
 
             state.searchPacks = packs
+        },
+        addPack(state, pack){
+            state.packs.push(pack)
+            localStorage.monka_packs = JSON.stringify(state.packs)
+        },
+        removePack(state, pack){
+            state.packs = Array.from(state.packs).filter( item => item.id !== pack.id)
+            localStorage.monka_packs = JSON.stringify(state.packs)
         }
     },
     state: {
@@ -31,6 +51,9 @@ export default {
     getters: {
         getSearchPacks(state){
             return state.searchPacks
+        },
+        getPacks(state){
+            return Array.from(state.packs).reverse()
         }
     }
 }

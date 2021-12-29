@@ -1,5 +1,5 @@
 <template>
-    <Navigation @scroll-section="onScrollSection" />
+    <Navigation @scroll-section="onScrollSection" @change-view="onChangeView" />
     <div class="containerView">
         <transition
             enter-active-class="animate__animated animate__fadeInLeft"
@@ -29,9 +29,11 @@ export default {
         ...mapGetters(["getCurrentView"]),
     },
     methods: {
-        async onScrollSection(active) {
-            await this.$refs.view.clearSearch()
-            await this.$refs.view.scrollTo(active)
+        onChangeView(){
+            if(this.$refs.view.clearSearch) this.$refs.view.clearSearch()
+        },
+        onScrollSection(active) {            
+            this.$refs.view.scrollTo(active)
         },
     },
 }

@@ -13,7 +13,7 @@
                 v-if="getSearchEmotes.length > 0"
                 :emotes="getSearchEmotes"
             />
-            <SearchEmpty v-else />
+            <EmptySection title="notfound" v-else />
         </div>
     </div>
 </template>
@@ -21,7 +21,7 @@
 <script>
 import SearchInput from '@/components/Search/SearchInput.vue'
 import SearchEmoteSection from '@/components/Search/SearchEmoteSection.vue'
-import SearchEmpty from '@/components/Search/SearchEmpty.vue'
+import EmptySection from '@/components/Other/EmptySection.vue'
 import EmoteSection from "@/components/Emotes/EmoteSection.vue"
 import { mapGetters, mapActions } from "vuex"
 import { gsap } from "gsap"
@@ -29,7 +29,7 @@ import { gsap } from "gsap"
 export default {
     name: "EmotesView",
     components: {
-        EmoteSection, SearchInput, SearchEmoteSection, SearchEmpty
+        EmoteSection, SearchInput, SearchEmoteSection, EmptySection
     },
     data() {
         return {
