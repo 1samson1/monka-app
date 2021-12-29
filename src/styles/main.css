@@ -76,6 +76,13 @@ body {
 
 .monka .nav-section.emotes {
     flex-grow: 1;
+    overflow-y: auto;
+    -ms-overflow-style: none; /* IE 10+ */
+    scrollbar-width: none; /* Firefox */
+}
+
+.monka .nav-section.emotes::-webkit-scrollbar {
+    width: 0; /* ширина scrollbar'a */
 }
 
 .monka .navigation .to-section {

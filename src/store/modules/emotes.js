@@ -58,14 +58,14 @@ export default {
             commit('setBetterTTVEmotes', {
                 id: `${pack.name}_bttv`,
                 avatar: pack.avatar,
-                title: pack.display_name,
+                title: `${pack.display_name} BetterTTV`,
                 emotes: sets.bttv
             })
 
             commit('setFrankerFacezEmotes', {
                 id: `${pack.name}_ffz`,
                 avatar: pack.avatar,
-                title: pack.display_name,
+                title: `${pack.display_name} FrankerFacez`,
                 emotes: sets.ffz
             })
         },

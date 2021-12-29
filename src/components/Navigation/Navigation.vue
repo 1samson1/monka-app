@@ -1,17 +1,17 @@
 <template>
   <div class="navigation">
     <div class="nav-section emotes">
-      <NavButton  
-        v-for="item in getEmoteSections"
+        <NavButton  
+            v-for="item in getEmoteSections"
 
-        :key="item.icon"                
-        :icon="item.icon"
-        :brand="item.brand"
-        :avatar="item.avatar"
-        :active="getActiveSection === item.id && isEmoteSection"
+            :key="item.icon"                
+            :icon="item.icon"
+            :brand="item.brand"
+            :avatar="item.avatar"
+            :active="getActiveSection === item.id && isEmoteSection"
 
-        @click="onClickButtonSection(item.id)"
-      />
+            @click="onClickButtonSection(item.id)"
+        />
     </div>
     <div class="nav-section">
       <NavButton  

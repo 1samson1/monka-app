@@ -14,7 +14,7 @@ export default new Vuex.Store({
         }
     },
     state:{
-        hostApi:'http://localhost',
+        hostApi:'http://192.168.0.65',
         currentView: 'emotes',
     },
     getters:{
