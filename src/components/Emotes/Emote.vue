@@ -18,12 +18,12 @@ export default {
     },
     methods: {
         onClick(){
-            console.log(this.emote.code);
+            this.onAddRecentlyEmote(this.emote)
         },
         onHover(){
             this.onChangeRecentEmote(this.emote)
         },
-        ...mapActions(['onChangeRecentEmote'])
+        ...mapActions(['onChangeRecentEmote', 'onAddRecentlyEmote'])
     }
 };
 </script>

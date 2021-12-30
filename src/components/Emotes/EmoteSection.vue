@@ -1,5 +1,5 @@
 <template>
-    <div class="section" :data-section="section.id">
+    <div class="section" :data-section="section.id" >
         <div class="section__header">
             <div class="section__brand">
                 <div v-if="section.avatar" class="section__channel">
@@ -15,7 +15,7 @@
                 {{ section.title }}
             </div>
         </div>
-        <div class="section__content">
+        <div class="section__content" v-if="isShow">
             <Emote
                 v-for="emote in section.emotes"
                 :key="emote._id"
@@ -39,6 +39,9 @@ export default {
         section: Object,
     },
     computed: {
+        isShow(){
+            return this.section.emotes.length > 0
+        },
         getBrandLogo() {
             return this.getHostApi + assets.logos[this.section.brand]
         },

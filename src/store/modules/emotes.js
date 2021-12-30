@@ -37,7 +37,9 @@ export default {
             })
 
             return Promise.all(promises)
-                .then(() => {dispatch('onChangeRecentEmote', getters.getFirstEmote)})
+                .then(() => {
+                    dispatch('onChangeRecentEmote', getters.getFirstEmote)
+                })
         },
         async fetchChannelEmotes({commit}, pack){
             const sets = {}
@@ -80,6 +82,9 @@ export default {
         },
         async onChangeRecentEmote({commit}, emote){
             commit('setRecentEmote', emote)
+        },
+        async onAddRecentlyEmote({commit}, emote){
+            commit('addRecentLyEmote', emote)
         }
     },
     mutations:{
@@ -179,16 +184,34 @@ export default {
         },
         setRecentEmote(state, emote){
             state.recentEmote = emote
+        },
+        addRecentLyEmote(state, emote){
+            let emotes = Array.from(state.emoteSections[0].emotes),
+                is_exist = false
+
+            emotes.forEach( item => {
+                if(item.id === emote.id){
+                    return is_exist = true
+                }
+            })
+
+            if(!is_exist){
+                emotes.unshift(emote)
+                emotes = emotes.slice(0, 16)
+    
+                state.emoteSections[0].emotes = emotes
+                localStorage.monka_recently = JSON.stringify(emotes)
+            }
         }
     },
     state:{    
-        searchEmotes: JSON.parse(localStorage.monka_recently || '[]'),
+        searchEmotes: [],
         emoteSections: [
             {
                 id: "recently",
                 icon: 'schedule',
                 title: 'recently',
-                emotes: [],
+                emotes: JSON.parse(localStorage.monka_recently || '[]'),
             },
         ],
         recentEmote: {},

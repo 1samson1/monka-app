@@ -180,7 +180,6 @@ body {
     align-items: center;
     font-size: 14px;
     gap: 8px;
-    padding-bottom: 7px;
 }
 
 .monka .section__channel {
@@ -191,6 +190,7 @@ body {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
+    margin-top: 7px;
 }
 
 /* EMOTES */

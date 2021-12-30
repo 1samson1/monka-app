@@ -20,13 +20,14 @@ export default {
     computed: {
         image() {
             if("images" in this.getRecentEmote){
-                if("2x" in this.getRecentEmote.images && this.getRecentEmote.images['2x']){
+                 if(this.getRecentEmote.images['2x']){
                     return this.getRecentEmote.images["2x"];
                 }
-                if("1x" in this.getRecentEmote.images && this.getRecentEmote.images["1x"]){
+                if(this.getRecentEmote.images["1x"]){
                     return this.getRecentEmote.images["1x"];
                 }
             }
+
             return assets.thumbs.sqrt;
         },
         from(){
