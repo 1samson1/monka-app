@@ -3,7 +3,7 @@
         <div class="section__content">
             <Emote
                 v-for="emote in emotes"
-                :key="emote.id"
+                :key="emote._id"
                 :emote="emote"
             />
         </div>

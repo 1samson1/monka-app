@@ -15,21 +15,23 @@
             />
             <EmptySection title="notfound" v-else />
         </div>
+        <EmoteInfo />
     </div>
 </template>
 
 <script>
 import SearchInput from '@/components/Search/SearchInput.vue'
 import SearchEmoteSection from '@/components/Search/SearchEmoteSection.vue'
-import EmptySection from '@/components/Other/EmptySection.vue'
 import EmoteSection from "@/components/Emotes/EmoteSection.vue"
+import EmoteInfo from "@/components/Emotes/EmoteInfo.vue"
+import EmptySection from '@/components/Other/EmptySection.vue'
 import { mapGetters, mapActions } from "vuex"
 import { gsap } from "gsap"
 
 export default {
     name: "EmotesView",
     components: {
-        EmoteSection, SearchInput, SearchEmoteSection, EmptySection
+        EmoteSection, EmoteInfo, SearchEmoteSection, EmptySection, SearchInput
     },
     data() {
         return {

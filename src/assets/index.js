@@ -5,5 +5,8 @@ export default {
         twitch: "/static/logos/twitch_logo.svg",
         twitch_light: "/static/logos/twitch_light_logo.svg",
         twitch_dark: "/static/logos/twitch_dark_logo.svg",
+    },
+    thumbs: {
+        sqrt: "data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAEALAAAAAABAAEAAAICTAEAOw=="
     }
 }

@@ -18,7 +18,7 @@
         <div class="section__content">
             <Emote
                 v-for="emote in section.emotes"
-                :key="emote.id"
+                :key="emote._id"
                 :emote="emote"
             />
         </div>

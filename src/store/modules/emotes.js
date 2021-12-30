@@ -36,7 +36,8 @@ export default {
                 promises.push(dispatch('fetchChannelEmotes', pack))
             })
 
-            return promises
+            return Promise.all(promises)
+                .then(() => {dispatch('onChangeRecentEmote', getters.getFirstEmote)})
         },
         async fetchChannelEmotes({commit}, pack){
             const sets = {}
@@ -76,11 +77,16 @@ export default {
             if(search.trim() === '') return
 
             return await commit('setSearchEmotes', search.toLowerCase())
+        },
+        async onChangeRecentEmote({commit}, emote){
+            commit('setRecentEmote', emote)
         }
     },
     mutations:{
         setBetterTTVEmotes(state, {id, avatar, title, emotes}){
             emotes = Array.from(emotes).map( item => {
+                item._id = `${item.id}${id}`
+                item.from = title
                 item.images = {
                     "1x": `https://cdn.betterttv.net/emote/${item.id}/1x`,
                     "2x": `https://cdn.betterttv.net/emote/${item.id}/2x`,
@@ -102,6 +108,13 @@ export default {
             state.emoteSections.push(set)
         },
         setFrankerFacezEmotes(state, {id, avatar, title, emotes}){
+            emotes = Array.from(emotes).map( item => {
+                item._id = `${item.id}${id}`
+                item.from = title
+
+                return item 
+            })
+
             const set = {
                 id,
                 title,
@@ -116,8 +129,9 @@ export default {
         setTwitchEmotes(state, {id ,avatar, title, emotes}){
             emotes = Array.from(emotes).map( item => {
                 return item = {
-                    id: item.id,
+                    _id: `${item.id}${id}`,
                     code: item.name,
+                    from: title,
                     images: {
                         "1x": item.images.url_1x,
                         "2x": item.images.url_2x,
@@ -138,11 +152,13 @@ export default {
             state.emoteSections.push(set)
         },        
         setSearchEmotes(state, search){
-            let emotes = []
+            const emotes = []
 
             Array.from(state.emoteSections).forEach( section => {
                 Array.from(section.emotes).forEach( emote => {
-                    if(emote.code.toLowerCase().indexOf(search) > -1) emotes.push(emote)
+                    if(emote.code.toLowerCase().indexOf(search) > -1){
+                        emotes.push(emote)
+                    }
                 })
             })
 
@@ -160,6 +176,9 @@ export default {
         },
         changeActiveSection(state, active){
             state.activeSection = active
+        },
+        setRecentEmote(state, emote){
+            state.recentEmote = emote
         }
     },
     state:{    
@@ -172,6 +191,7 @@ export default {
                 emotes: [],
             },
         ],
+        recentEmote: {},
         activeSection: 'recently',
     },
     getters:{
@@ -183,6 +203,23 @@ export default {
         },
         getSearchEmotes(state){
             return state.searchEmotes
+        },
+        getRecentEmote(state){
+            return state.recentEmote
+        },
+        getEmotes(state){
+            const emotes = {}
+
+            Array.from(state.emoteSections).forEach( section => {
+                Array.from(section.emotes).forEach( emote => {
+                    emotes[emote.code] = emote
+                })
+            })
+
+            return emotes
+        },
+        getFirstEmote(state, getters){
+            return getters.getEmotes[Object.keys(getters.getEmotes)[0]]
         }
     },
 }
