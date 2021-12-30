@@ -13,10 +13,7 @@ import assets from '@/assets/index.js'
 import { mapGetters } from 'vuex'
 
 export default {
-    name: "EmoteInfo",
-    mounted(){
-        console.log(assets.thumbs.sqrt);
-    },
+    name: "EmoteInfo",    
     computed: {
         image() {
             if("images" in this.getRecentEmote){

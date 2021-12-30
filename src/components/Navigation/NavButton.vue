@@ -1,5 +1,15 @@
 <template>
-    <button :class="getClasses" type="button" class="to-section">
+    <button 
+        type="button" 
+        class="to-section"
+
+        ref="button"
+
+        :class="getClasses"
+
+        @mouseover="onHover"
+        @mouseleave="onLeave"
+    >
         <div v-if="avatar" class="section__channel">
             <img class="channel_image" :src="avatar" />
             <img class="channel_image brand" :src="getBrandLogo" />
@@ -20,8 +30,10 @@ export default {
         brand: String,
         avatar: String,
         active: Boolean,
+        title: String,
         icon: String,
     },
+    emits: ['nav-button-hover', 'nav-button-leave'],
     computed: {
         getBrandLogo() {
             return this.getHostApi + assets.logos[this.brand]
@@ -33,5 +45,16 @@ export default {
         },
         ...mapGetters(["getHostApi"]),
     },
+    methods: {
+        onHover(){
+            this.$emit('nav-button-hover', {
+                el: this.$refs.button,
+                text: this.title
+            })
+        },
+        onLeave(){
+            this.$emit('nav-button-leave')
+        }
+    }
 }
 </script>

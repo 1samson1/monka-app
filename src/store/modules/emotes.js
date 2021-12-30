@@ -1,6 +1,6 @@
 export default {
     actions:{
-        async onChangeActiveSection({commit}, {active}){
+        async onChangeActiveSection({commit}, active){
             if(!active) return;
             
            return await commit('changeActiveSection', active)
@@ -90,7 +90,7 @@ export default {
     mutations:{
         setBetterTTVEmotes(state, {id, avatar, title, emotes}){
             emotes = Array.from(emotes).map( item => {
-                item._id = `${item.id}${id}`
+                item._id = `${item.id}_${id}`
                 item.from = title
                 item.images = {
                     "1x": `https://cdn.betterttv.net/emote/${item.id}/1x`,
@@ -114,7 +114,7 @@ export default {
         },
         setFrankerFacezEmotes(state, {id, avatar, title, emotes}){
             emotes = Array.from(emotes).map( item => {
-                item._id = `${item.id}${id}`
+                item._id = `${item.id}_${id}`
                 item.from = title
 
                 return item 
@@ -134,7 +134,7 @@ export default {
         setTwitchEmotes(state, {id ,avatar, title, emotes}){
             emotes = Array.from(emotes).map( item => {
                 return item = {
-                    _id: `${item.id}${id}`,
+                    _id: `${item.id}_${id}`,
                     code: item.name,
                     from: title,
                     images: {
@@ -160,6 +160,8 @@ export default {
             const emotes = []
 
             Array.from(state.emoteSections).forEach( section => {
+                if(section.id === 'recently') return
+
                 Array.from(section.emotes).forEach( emote => {
                     if(emote.code.toLowerCase().indexOf(search) > -1){
                         emotes.push(emote)
@@ -214,7 +216,10 @@ export default {
                 emotes: JSON.parse(localStorage.monka_recently || '[]'),
             },
         ],
-        recentEmote: {},
+        recentEmote: {
+            code: "None",
+            from: "None"
+        },
         activeSection: 'recently',
     },
     getters:{

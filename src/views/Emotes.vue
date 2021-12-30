@@ -69,9 +69,7 @@ export default {
                     cur_pos < bottom &&
                     this.getActiveSection != el.dataset.section
                 ) {
-                    this.onChangeActiveSection({
-                        active: el.dataset.section,
-                    });
+                    this.onChangeActiveSection(el.dataset.section);
                 }
             });
         },
