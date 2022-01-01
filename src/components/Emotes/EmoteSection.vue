@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import assets from "@/assets/index.js"
+import assets from "@/assets"
 import Emote from "./Emote.vue"
 import { mapGetters } from "vuex"
 

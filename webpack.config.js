@@ -11,7 +11,6 @@ import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
 import ESLintWebpackPlugin from 'eslint-webpack-plugin';
 import webpack from 'webpack';
 
-
 const mode = process.env.NODE_ENV
 const isDev = mode === 'development'
 const isProd = !isDev 
@@ -127,8 +126,8 @@ export default  (env, args) => {
         },
         resolve: {
             alias: {
-                "@": path.resolve('./src'),
-            }
+                "@": path.resolve( './src'),
+            },
         },
         devServer:{
             hot: true,
@@ -141,6 +140,9 @@ export default  (env, args) => {
                 // Babel loader
                 {
                     test: /\.m?js$/,
+                    resolve: {
+                        fullySpecified: false
+                    },
                     exclude: /node_modules/,
                     use: {
                         loader: "babel-loader",

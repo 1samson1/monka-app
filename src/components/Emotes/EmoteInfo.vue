@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import assets from '@/assets/index.js'
+import assets from '@/assets'
 import { mapGetters } from 'vuex'
 
 export default {

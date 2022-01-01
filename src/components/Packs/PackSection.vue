@@ -1,7 +1,7 @@
 <template>
     <div class="section">
         <div class="pack__header">
-            <img class="pack__avatar" :src="pack.avatar" >
+            <img v-lazy class="pack__avatar" :src="thumb" :data-src="pack.avatar" >
             <a :href="pack.url" class="pack__name">{{ pack.display_name }}</a>
             <button type="button" class="pack__toggle" :class="toggleClasses" @click="togglePack">
                 <div class="material-icons md-18">{{ toggleIcon }}</div>
@@ -13,12 +13,17 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
+import assets from '@/assets'
+
 export default {
     name: "PackSection",
     props: {
         pack: Object,
     },
     computed: {
+        thumb(){
+            return assets.thumbs.sqrt
+        },
         isInclude(){
             return Array.from(this.getPacks).some( pack => pack.id === this.pack.id)
         },
