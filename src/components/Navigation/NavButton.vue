@@ -27,6 +27,7 @@ import { mapGetters } from "vuex"
 
 export default {
     props: {
+        id: String,
         brand: String,
         avatar: String,
         active: Boolean,
@@ -42,6 +43,9 @@ export default {
             return {
                 active: this.active,
             }
+        },
+        getId() {
+            return this.id
         },
         ...mapGetters(["getHostApi"]),
     },

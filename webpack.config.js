@@ -88,7 +88,7 @@ const plugins = () => {
             filename: `css/${filename('.css')}`
         }),
         new webpack.DefinePlugin({
-            PRODUCTION: JSON.stringify(isDev),
+            DEBUG: JSON.stringify(isDev),
             __VUE_OPTIONS_API__: JSON.stringify(isDev),
             __VUE_PROD_DEVTOOLS__: JSON.stringify(isDev),
         })

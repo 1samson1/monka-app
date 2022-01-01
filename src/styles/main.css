@@ -82,6 +82,7 @@ body {
 }
 
 .monka .nav-section.emotes {
+    position: relative;
     flex-grow: 1;
     overflow-y: auto;
     -ms-overflow-style: none; /* IE 10+ */

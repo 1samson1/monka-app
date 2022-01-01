@@ -2,9 +2,12 @@
   <div class="navigation">
     <div class="nav-section emotes" ref="navEmotes">
         <NavButton  
+            ref="navEmoteBtns"
+
             v-for="item in getEmoteSections"
 
             :key="item.id"                
+            :id = item.id
             :icon="item.icon"
             :title="item.title"
             :brand="item.brand"
@@ -20,7 +23,8 @@
         <NavButton  
             v-for="item in buttons"
 
-            :key="item.icon"                
+            :key="item.icon"    
+            :id="item.view"            
             :icon="item.icon"
             :title="item.title"
             :active="getCurrentView === item.view"
@@ -38,6 +42,7 @@
 import NavButton from './NavButton.vue'
 import NavTooltip from './NavTooltip.vue'
 import {mapGetters, mapActions} from 'vuex'
+import {gsap} from 'gsap'
 
 export default {
     name: "NavigationBar",
@@ -61,6 +66,21 @@ export default {
             ]
         }
     },
+    watch: {
+        getActiveSection(newVal){
+            let navEmoteScrollBottom = this.$refs.navEmotes.scrollTop + this.$refs.navEmotes.offsetHeight,
+                navBtn = this.$refs.navEmoteBtns.find( btn => btn.getId === newVal).$el,
+                navBtnOffsetBottom = navBtn.offsetTop + navBtn.offsetHeight
+
+            if(this.$refs.navEmotes.scrollTop > navBtn.offsetTop){
+                this.scrollTo(navBtn.offsetTop)
+            }
+
+            if(navEmoteScrollBottom  < navBtnOffsetBottom){
+                this.scrollTo(navBtnOffsetBottom - navEmoteScrollBottom + this.$refs.navEmotes.scrollTop)
+            }
+        }
+    },
     computed:{
         isEmoteSection(){
             return this.getCurrentView === 'emotes'
@@ -72,8 +92,15 @@ export default {
         ])
     },
     methods: {
+        scrollTo(offset){
+            gsap.to(this.$refs.navEmotes, {
+                duration: 0.8,
+                scrollTop: offset,
+                ease: "power2.out",
+            });
+        },
         onNavHover(e, offset){
-            if(offset) e.offset = this.$refs.navEmotes.scrollTop
+            if(offset) e.offset = this.$refs.navEmotes.scrollTop - this.$refs.navEmotes.offsetTop
 
             this.$refs.tooltip.show(e)
         },

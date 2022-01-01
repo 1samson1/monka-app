@@ -1,5 +1,5 @@
 <template>
-    <div class="section" :data-section="section.id" >
+    <div class="section">
         <div class="section__header">
             <div class="section__brand">
                 <div v-if="section.avatar" class="section__channel">
@@ -44,6 +44,9 @@ export default {
         },
         getBrandLogo() {
             return this.getHostApi + assets.logos[this.section.brand]
+        },
+        getId(){
+            return this.section.id
         },
         ...mapGetters(["getHostApi"]),
     },

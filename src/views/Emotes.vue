@@ -1,8 +1,9 @@
 <template>
     <div class="bg-none">
         <SearchInput v-model:value="search" :large="true" placeholder="Search" />
-        <div ref="sections" v-show="!searching" class="sections scroll" @scroll="onScroll">
+        <div ref="boxSections" v-show="!searching" class="sections scroll" @scroll="onScroll">
             <EmoteSection
+                ref="sections"
                 v-for="section in getEmoteSections"
                 :key="section.title"
                 :section="section"
@@ -57,30 +58,27 @@ export default {
             if (this.scrollOff) return;
 
             let el = e.target,
-                cur_pos = el.scrollTop,
-                sections = el.childNodes;
+                cur_pos = el.scrollTop
 
-            Array.from(sections).forEach((el) => {
-                let top = el.offsetTop - 30,
-                    bottom = top + el.offsetHeight;
+            Array.from(this.$refs.sections).forEach((sec) => {
+                let top = sec.$el.offsetTop - 30,
+                    bottom = top + sec.$el.offsetHeight;
 
                 if (
                     top <= cur_pos &&
                     cur_pos < bottom &&
-                    this.getActiveSection != el.dataset.section
+                    this.getActiveSection != sec.getId
                 ) {
-                    this.onChangeActiveSection(el.dataset.section);
+                    this.onChangeActiveSection(sec.getId);
                 }
             });
         },
         scrollTo(active) {
-            let section = this.$refs.sections.querySelector(
-                `[data-section="${active}"]`
-            );
+            let section = this.$refs.sections.find( sec => sec.getId === active).$el
 
             this.scrollOff = true;
 
-            gsap.to(this.$refs.sections, {
+            gsap.to(this.$refs.boxSections, {
                 duration: 0.8,
                 scrollTop: section.offsetTop,
                 ease: "power2.out",
