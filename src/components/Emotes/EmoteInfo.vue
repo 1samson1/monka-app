@@ -28,7 +28,7 @@ export default {
             return assets.thumbs.sqrt;
         },
         from(){
-            return `from ${this.getRecentEmote.from}`
+            return  this.$t('emotes.from', {pack: this.getRecentEmote.from })
         },
         ...mapGetters(["getRecentEmote"])
     }

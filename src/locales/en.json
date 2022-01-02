@@ -1,0 +1,23 @@
+{
+    "search": {
+        "packs": "Search packs",
+        "emotes": "Search emotes"
+    },
+    "sections": {
+        "recently": "Recently"
+    },
+    "views": {
+        "settings": "Settings",
+        "packs": "Packs"
+    },
+    "emotes": {
+        "from" : "from {pack}"
+    },
+    "notfound": {
+        "emotes": "Emotes not found!",
+        "packs": "Packs not found!"
+    },
+    "empty": {
+        "packs": "You don't have any packs. Try to search right pack."
+    }
+}

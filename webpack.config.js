@@ -9,6 +9,7 @@ import CopyWebpackPlugin from 'copy-webpack-plugin';
 import TerserPlugin from 'terser-webpack-plugin';
 import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
 import ESLintWebpackPlugin from 'eslint-webpack-plugin';
+import JsonMinimizerPlugin from 'json-minimizer-webpack-plugin';
 import webpack from 'webpack';
 
 const mode = process.env.NODE_ENV
@@ -44,16 +45,17 @@ const cssLoaders = loader => {
 
 const optimization = () => {
     const config = {
-        splitChunks: {
-            chunks: 'all'
-        }
+        // splitChunks: {
+        //     chunks: 'all'
+        // }
     }
 
     if(isProd){
         config.minimize = true
         config.minimizer = [
             new CssMinimizerPlugin(),
-            new TerserPlugin()
+            new TerserPlugin(),
+            new JsonMinimizerPlugin()
         ]
     }
 
@@ -88,7 +90,7 @@ const plugins = () => {
         }),
         new webpack.DefinePlugin({
             DEBUG: JSON.stringify(isDev),
-            __VUE_OPTIONS_API__: JSON.stringify(isDev),
+            __VUE_OPTIONS_API__: JSON.stringify(true),
             __VUE_PROD_DEVTOOLS__: JSON.stringify(isDev),
         })
     ]
@@ -101,7 +103,7 @@ const plugins = () => {
 }
 
 const filename = ext => {
-    return isDev ? `[name].${ext}` : `[name].[hash].${ext}`
+    return isDev ? `[name].${ext}` : `[name].${ext}`
 }
 
 const pathBuild = () => {

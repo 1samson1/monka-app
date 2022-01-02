@@ -1,6 +1,6 @@
 <template>
     <div class="bg-none">
-        <SearchInput v-model:value="search" :large="true" placeholder="Search" />
+        <SearchInput v-model:value="search" :large="true" :placeholder="$t('search.emotes')" />
         <div ref="boxSections" v-show="!searching" class="sections scroll" @scroll="onScroll">
             <EmoteSection
                 ref="sections"
@@ -14,7 +14,7 @@
                 v-if="getSearchEmotes.length > 0"
                 :emotes="getSearchEmotes"
             />
-            <EmptySection title="notfound" v-else />
+            <EmptySection :title="$t('notfound.emotes')" v-else />
         </div>
         <EmoteInfo />
     </div>

@@ -1,6 +1,6 @@
 <template>
     <div class="bg-none">
-        <SearchInput v-model:value="search" :large="true" placeholder="Search packs" />
+        <SearchInput v-model:value="search" :large="true" :placeholder="$t('search.packs')" />
         <div v-show="!searching" class="sections scroll">
             <div class="packs" v-if="getPacks.length > 0">
                 <PackSection
@@ -9,7 +9,7 @@
                     :pack="pack"
                 />
             </div>
-            <EmptySection title="empty" v-else />
+            <EmptySection :title="$t('empty.packs')" v-else />
         </div>
         <div v-show="searching" class="sections scroll">
             <div class="searched" v-if="getSearchPacks.length > 0">
@@ -19,7 +19,7 @@
                     :pack="pack"
                 />
             </div>
-            <EmptySection :loading="loading" title="notfound" v-else />
+            <EmptySection :loading="loading" :title="$t('notfound.packs')" v-else />
         </div>
     </div>
 </template>

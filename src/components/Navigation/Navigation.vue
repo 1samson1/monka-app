@@ -10,6 +10,8 @@
             :id = item.id
             :icon="item.icon"
             :title="item.title"
+            :translate="item.translateTitle"
+            translatePath="sections"
             :brand="item.brand"
             :avatar="item.avatar"
             :active="getActiveSection === item.id && isEmoteSection"
@@ -26,7 +28,8 @@
             :key="item.icon"    
             :id="item.view"            
             :icon="item.icon"
-            :title="item.title"
+            :title="item.view"
+            translatePath="views"
             :active="getCurrentView === item.view"
 
             @click="onChangeView(item.view)"
@@ -54,12 +57,10 @@ export default {
         return {
             buttons:[
                 {
-                    title: 'Packs',
                     icon: 'auto_awesome_motion',
                     view: 'packs'
                 },
                 {
-                    title: 'Settings',
                     icon: 'settings',
                     view: 'settings'
                 },

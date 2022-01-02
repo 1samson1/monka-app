@@ -12,7 +12,7 @@
                 </div>
             </div>
             <div class="section__title">
-                {{ section.title }}
+                {{ getTitle }}
             </div>
         </div>
         <div class="section__content" v-if="isShow">
@@ -44,6 +44,12 @@ export default {
         },
         getBrandLogo() {
             return this.getHostApi + assets.logos[this.section.brand]
+        },
+        getTitle() {
+            if(this.section.translateTitle){
+                return this.$t(`sections.${this.section.title}`)
+            }
+            return this.section.title
         },
         getId(){
             return this.section.id

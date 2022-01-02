@@ -104,6 +104,7 @@ export default {
             const set = {
                 id,
                 title,
+                translateTitle: false,
                 brand: "betterttv",
                 emotes
             }
@@ -123,6 +124,7 @@ export default {
             const set = {
                 id,
                 title,
+                translateTitle: false,
                 brand: 'frankerfacez',
                 emotes
             }
@@ -148,6 +150,7 @@ export default {
             const set = {
                 id,
                 title,
+                translateTitle: false,
                 brand: "twitch_light",
                 emotes: emotes
             }
@@ -188,22 +191,19 @@ export default {
             state.recentEmote = emote
         },
         addRecentLyEmote(state, emote){
-            let emotes = Array.from(state.emoteSections[0].emotes),
-                is_exist = false
+            let emotes = Array.from(state.emoteSections[0].emotes)
 
-            emotes.forEach( item => {
+            for(let item of emotes) {
                 if(item.id === emote.id){
-                    return is_exist = true
+                    return false
                 }
-            })
-
-            if(!is_exist){
-                emotes.unshift(emote)
-                emotes = emotes.slice(0, 16)
-    
-                state.emoteSections[0].emotes = emotes
-                localStorage.monka_recently = JSON.stringify(emotes)
             }
+
+            emotes.unshift(emote)
+            emotes = emotes.slice(0, 16)
+
+            state.emoteSections[0].emotes = emotes
+            localStorage.monka_recently = JSON.stringify(emotes)
         }
     },
     state:{    
@@ -213,6 +213,7 @@ export default {
                 id: "recently",
                 icon: 'schedule',
                 title: 'recently',
+                translateTitle: true,
                 emotes: JSON.parse(localStorage.monka_recently || '[]'),
             },
         ],
