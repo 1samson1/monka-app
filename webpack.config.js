@@ -103,7 +103,7 @@ const plugins = () => {
 }
 
 const filename = ext => {
-    return isDev ? `[name].${ext}` : `[name].${ext}`
+    return isDev ? `[name]${ext}` : `[name]${ext}`
 }
 
 const pathBuild = () => {
