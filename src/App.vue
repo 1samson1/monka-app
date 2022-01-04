@@ -1,14 +1,16 @@
 <template>
-    <Navigation @scroll-section="onScrollSection" @change-view="onChangeView" />
-    <div class="containerView">
-        <transition
-            enter-active-class="animate__animated animate__fadeInLeft"
-            leave-active-class="animate__animated animate__fadeOutRight"
-        >
-            <keep-alive>
-                <component :is="getView" ref="view" class="view" />
-            </keep-alive>
-        </transition>
+    <div class="monka">
+        <Navigation @scroll-section="onScrollSection" @change-view="onChangeView" />
+        <div class="containerView">
+            <transition
+                enter-active-class="animate__animated animate__fadeInLeft"
+                leave-active-class="animate__animated animate__fadeOutRight"
+            >
+                <keep-alive>
+                    <component :is="getView" ref="view" class="view" />
+                </keep-alive>
+            </transition>
+        </div>
     </div>
 </template>
 

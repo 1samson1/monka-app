@@ -1,0 +1,8 @@
+.monka__insert__emote {
+    position: relative;
+    display: inline-block;
+}
+
+.monka__insert__emote img {
+    vertical-align: middle;
+}
