@@ -36,10 +36,16 @@ const i18n = setupI18n({
     silentTranslationWarn: true
 })
 
-const AppInstance = createApp(App)
+const createMonka = () => {
+    const app = createApp(App)
+    
+    app.use(lazyload, { threshold: 0.25 })
+    app.use(store)
+    app.use(i18n)   
+    
+    return app
+}
 
-AppInstance.use(lazyload, { threshold: 0.25 })
-AppInstance.use(store)
-AppInstance.use(i18n)
+const mk = createMonka()
 
-AppInstance.mount(".monka")
+mk.mount('.mk-app')
