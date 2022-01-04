@@ -6,6 +6,21 @@ import lazyload from './plugins/lazyload'
 
 import './styles/main.css'
 
+const callback = (mutation, state) => {
+    const listenMutations = [
+        'setBetterTTVEmotes',
+        'setFrankerFacezEmotes',
+        'setTwitchEmotes',
+        'removeEmotes'
+    ]
+
+    if(listenMutations.includes(mutation.type)){
+        console.log('CallBack apply', mutation, state);
+    }
+}
+
+store.subscribe(callback)
+
 store.dispatch('fetchEmotes')
     .then(() => {
         //console.log(store);

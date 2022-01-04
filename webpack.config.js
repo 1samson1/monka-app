@@ -64,11 +64,11 @@ const optimization = () => {
 
 const plugins = () => {
     const base = [
-        new HtmlWebpackPlugin({
-            title: 'Monka',
-            inject: 'body',
-            template: './public/index.html'
-        }),
+        // new HtmlWebpackPlugin({
+        //     title: 'Monka',
+        //     inject: 'body',
+        //     template: './public/index.html'
+        // }),
         new CleanWebpackPlugin(),
 
         //Copy folder public to build folder
@@ -86,7 +86,7 @@ const plugins = () => {
         }),
         new VueLoaderPlugin(),
         new MiniCssExtractPlugin({
-            filename: `css/${filename('.css')}`
+            filename: filename('.css')
         }),
         new webpack.DefinePlugin({
             DEBUG: JSON.stringify(isDev),
@@ -123,7 +123,7 @@ export default  (env, args) => {
             monka: ['@babel/polyfill', './src/index.js']
         },
         output: {
-            filename: `js/${filename('.js')}`,
+            filename: filename('.js'),
             path: pathBuild()
         },
         resolve: {
