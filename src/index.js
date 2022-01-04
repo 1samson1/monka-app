@@ -6,8 +6,29 @@ import lazyload from './plugins/lazyload'
 
 import './styles/main.css'
 
+
+
+const callback = (mutation, state) => {
+    const listenMutations = [
+        'setBetterTTVEmotes',
+        'setFrankerFacezEmotes',
+        'setTwitchEmotes',
+        'removeEmotes'
+    ]
+
+    if(listenMutations.includes(mutation.type)){
+        console.log('CallBack apply', mutation, state);
+    }
+}
+
+store.subscribe(callback)
+
 store.dispatch('fetchEmotes')
-    .then(() => console.log('All emotes loaded'))
+    .then(() => {
+        //console.log(store);
+        //console.log(JSON.stringify(store.getters.getEmotes));
+        console.log('All emotes loaded')
+    })
 
 var userLang = () =>  navigator.language.substring(0,2) || navigator.userLanguage.substring(0,2) ; 
 

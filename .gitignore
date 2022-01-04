@@ -1,4 +1,5 @@
 build
 dist
 node_modules
-chrome/jquery.js
+chrome/monka.js
+chrome/skin/monka.css

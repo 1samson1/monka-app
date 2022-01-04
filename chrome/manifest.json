@@ -4,10 +4,15 @@
     "version": "0.1",
     "author": "1samson1",
     "manifest_version": 3,
-    "default_locale": "en",
-    "background": {
-      "service_worker": "background.js"
-    },    
+    "default_locale": "en",    
+    "content_scripts": [ 
+      {
+        "js": ["monka.js"],
+        "css": ["skin/monka.css"],
+        "matches": [ "*://vk.com/*", "*://*.vk.com/*" ],
+        "run_at": "document_end"
+      }
+    ],   
     "action": {
       "default_popup": "/popup.html",
       "default_icon": {
