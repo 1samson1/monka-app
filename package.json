@@ -16,7 +16,7 @@
     "emote"
   ],
   "author": "SAMSON",
-  "license": "ISC",
+  "license": "MIT",
   "type": "module",
   "devDependencies": {
     "@babel/core": "^7.16.5",
