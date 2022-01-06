@@ -88,6 +88,9 @@ const plugins = () => {
         new MiniCssExtractPlugin({
             filename: filename('.css')
         }),
+        new webpack.optimize.LimitChunkCountPlugin({
+            maxChunks: 1,
+        }),
         new webpack.DefinePlugin({
             DEBUG: JSON.stringify(isDev),
             __VUE_OPTIONS_API__: JSON.stringify(true),

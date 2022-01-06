@@ -7,9 +7,9 @@
     "default_locale": "en",    
     "content_scripts": [ 
       {
+        "matches": [ "*://vk.com/*", "*://*.vk.com/*" ],
         "js": ["monka.js"],
         "css": ["skin/monka.css"],
-        "matches": [ "*://vk.com/*", "*://*.vk.com/*" ],
         "run_at": "document_end"
       }
     ],   

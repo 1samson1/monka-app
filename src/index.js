@@ -3,30 +3,11 @@ import App from '@/App.vue'
 import store from '@/store'
 import {setupI18n} from './i18n'
 import lazyload from './plugins/lazyload'
+import Initter from './modules/initter'
 
 import './styles/main.css'
 
-const callback = (mutation, state) => {
-    const listenMutations = [
-        'setBetterTTVEmotes',
-        'setFrankerFacezEmotes',
-        'setTwitchEmotes',
-        'removeEmotes'
-    ]
-
-    if(listenMutations.includes(mutation.type)){
-        console.log('CallBack apply', mutation, state);
-    }
-}
-
-store.subscribe(callback)
-
-store.dispatch('fetchEmotes')
-    .then(() => {
-        //console.log(store);
-        //console.log(JSON.stringify(store.getters.getEmotes));
-        console.log('All emotes loaded')
-    })
+// Init locales
 
 var userLang = () =>  navigator.language.substring(0,2) || navigator.userLanguage.substring(0,2) ; 
 
@@ -36,16 +17,15 @@ const i18n = setupI18n({
     silentTranslationWarn: true
 })
 
-const createMonka = () => {
-    const app = createApp(App)
-    
-    app.use(lazyload, { threshold: 0.25 })
-    app.use(store)
-    app.use(i18n)   
-    
-    return app
-}
+// Init app
 
-const mk = createMonka()
+const app = createApp(App)
 
-mk.mount('.mk-app')
+app.use(lazyload, { threshold: 0.25 })
+app.use(i18n)   
+
+// Init other
+
+const init = new Initter(app, store)
+
+window.monka = init

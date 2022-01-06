@@ -1,6 +1,6 @@
-import * as $ from 'jquery'
+import $ from "jquery";
 
-class ReplacerEmotes {
+export default class ReplacerEmotes {
 
 	constructor(nodes){
 		this.nodeTestRegEx = /\w+?/gi;
@@ -54,6 +54,6 @@ class ReplacerEmotes {
 	}
 	
 	getHtmlEmote(emote) {
-		return  `<div class="monka__insert__emote"> <img src="${emote.images['1x']}"> </div>`
+		return  `<div class="monka__insert__emote"> <img src="${emote.images['1x']}" alt="${emote.code}"> </div>`
 	}
 }

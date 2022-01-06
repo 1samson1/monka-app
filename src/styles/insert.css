@@ -1,3 +1,44 @@
+/* MONKA BOX */
+
+.monka__box {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;    
+    top: 100px;
+    left: 900px;
+    transition: opacity 0.4s ease;
+    z-index: 7;    
+}
+
+.monka__box.show{
+    opacity: 1;
+    pointer-events: all;
+}
+
+/* BUTTON CALL MONKA */
+
+.monka__smiles {
+    padding: 8px 9px 8px 7px;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.monka__smiles:hover .monka__icon {
+    opacity: 1;
+}
+
+.monka__smiles .monka__icon {
+    background: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='iso-8859-1'%3F%3E%3C!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0) --%3E%3Csvg version='1.1' id='Layer_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' viewBox='0 0 512 512' style='enable-background:new 0 0 512 512;' xml:space='preserve'%3E%3Ccircle style='fill:%23FCD063;' cx='256' cy='256' r='256'/%3E%3Cg%3E%3Cpath style='fill:%23F7B84E;' d='M420.256,59.744C457.504,104.208,480,161.456,480,224c0,141.376-114.624,256-256,256 c-62.544,0-119.776-22.496-164.256-59.744C106.704,476.32,177.152,512,256,512c141.376,0,256-114.624,256-256 C512,177.152,476.32,106.704,420.256,59.744z'/%3E%3Ccircle style='fill:%23F7B84E;' cx='424' cy='232' r='24'/%3E%3Ccircle style='fill:%23F7B84E;' cx='88' cy='232' r='24'/%3E%3C/g%3E%3Cpath style='fill:%23C98E3F;' d='M192,208c-8.848,0-16-7.168-16-16c0-8.816-7.168-16-16-16s-16,7.184-16,16c0,8.832-7.152,16-16,16 s-16-7.168-16-16c0-26.464,21.536-48,48-48s48,21.536,48,48C208,200.832,200.848,208,192,208z'/%3E%3Cpath style='fill:%23AB7934;' d='M160,160c22.944,0,42.128,16.208,46.848,37.744c0.688-1.792,1.152-3.712,1.152-5.744 c0-26.464-21.536-48-48-48s-48,21.536-48,48c0,2.032,0.464,3.952,1.152,5.744C117.872,176.208,137.056,160,160,160z'/%3E%3Cpath style='fill:%23C98E3F;' d='M384,208c-8.848,0-16-7.168-16-16c0-8.816-7.168-16-16-16s-16,7.184-16,16c0,8.832-7.152,16-16,16 s-16-7.168-16-16c0-26.464,21.536-48,48-48s48,21.536,48,48C400,200.832,392.848,208,384,208z'/%3E%3Cpath style='fill:%23AB7934;' d='M352,160c22.944,0,42.128,16.208,46.848,37.744c0.688-1.792,1.152-3.712,1.152-5.744 c0-26.464-21.536-48-48-48s-48,21.536-48,48c0,2.032,0.464,3.952,1.152,5.744C309.872,176.208,329.056,160,352,160z'/%3E%3Cpath style='fill:%23FFFFFF;' d='M401.472,288H110.528C102.496,288,96,293.968,96,301.344C96,382.224,167.776,448,256,448 s160-65.776,160-146.656C416,293.968,409.504,288,401.472,288z'/%3E%3Cg%3E%3Cpath style='fill:%23E2E5E7;' d='M414.944,314.656c0.464-4.4,1.056-8.784,1.056-13.312c0-7.376-6.496-13.344-14.528-13.344H110.528 C102.496,288,96,293.968,96,301.344c0,4.528,0.592,8.912,1.056,13.312H414.944z'/%3E%3Cpath style='fill:%23E2E5E7;' d='M128,388.976c4.912,6,10.192,11.68,16,16.944V288h-16V388.976z'/%3E%3Cpath style='fill:%23E2E5E7;' d='M208,441.232c5.216,1.52,10.56,2.8,16,3.808V288h-16V441.232z'/%3E%3Cpath style='fill:%23E2E5E7;' d='M288,445.04c5.44-1.008,10.784-2.304,16-3.808V288h-16V445.04z'/%3E%3Cpath style='fill:%23E2E5E7;' d='M384,388.976V288h-16v117.904C373.808,400.656,379.088,394.976,384,388.976z'/%3E%3C/g%3E%3Cg%3E%3Crect x='128' y='288' style='fill:%23CAD1D8;' width='16' height='26.656'/%3E%3Crect x='208' y='288' style='fill:%23CAD1D8;' width='16' height='26.656'/%3E%3Crect x='288' y='288' style='fill:%23CAD1D8;' width='16' height='26.656'/%3E%3Crect x='368' y='288' style='fill:%23CAD1D8;' width='16' height='26.656'/%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3C/svg%3E%0A")
+        no-repeat;
+    background-size: cover;
+    width: 20px;
+    height: 20px;
+    opacity: 0.6;
+    transition: all 0.4s ease;
+}
+
+/* EMOTES INSERT */
+
 .monka__insert__emote {
     position: relative;
     display: inline-block;
