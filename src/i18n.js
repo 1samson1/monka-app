@@ -1,15 +1,7 @@
 import { nextTick } from "vue";
 import { createI18n } from "vue-i18n";
 
-// Locales
-
-import enLocale from './locales/en.json'
-import ruLocale from './locales/ru.json'
-
-export const SUPPORT_LOCALES = {
-    "en": enLocale,
-    "ru": ruLocale
-};
+export const SUPPORT_LOCALES = ["en", "ru"];
 
 export function setupI18n(options = { locale: "en" }) {
     const i18n = createI18n(options)
@@ -38,12 +30,13 @@ export function setI18nLanguage(i18n, locale) {
 }
 
 export async function loadLocaleMessages(i18n, locale) {
-    if(!(locale in SUPPORT_LOCALES)) return
-
-    const messages = SUPPORT_LOCALES[locale]
+    // load locale messages with dynamic import
+    const messages = await import(
+        /* webpackChunkName: "locale-[request]" */ `./locales/${locale}.json`
+    );
 
     // set locale and locale message
-    i18n.global.setLocaleMessage(locale, messages)
+    i18n.global.setLocaleMessage(locale, messages.default)
 
     localStorage.monka_locale = locale
 
